@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-pod
+spec:
+  containers:
+    - name: nginx
+      image: nginx
+      readinessProbe:
+        httpget:
+          path: /api/ready
+          port: 8080
+      ---------------------
+      readinessProbe:
+        tcpSocket:
+          port: 3306
+      ---------------------
+      readinessProbe:
+        exec:
+          command:
+            - cat
+            - /api/is_ready
